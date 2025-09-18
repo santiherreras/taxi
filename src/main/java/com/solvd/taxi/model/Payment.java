@@ -21,6 +21,5 @@ public abstract class Payment<T extends Payable> implements Payable {
         return amount;
     }
 
-    // Cada subclase define su propia lógica
     public abstract boolean processPayment();
 }

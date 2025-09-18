@@ -3,7 +3,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
+
+import static org.apache.commons.lang3.BooleanUtils.forEach;
 
 public class TaxiCompany{
 
@@ -13,7 +15,7 @@ public class TaxiCompany{
     protected LocalDate foundedDate;
     protected String headquarters;
     private String transportType;
-    private ArrayList<Driver> drivers;
+    private List<Driver> drivers;
 
 
     public TaxiCompany(String headquarters, String transportType, LocalDate foundedDate, String name) {
@@ -56,11 +58,11 @@ public class TaxiCompany{
     }
 
 
-    public ArrayList<Driver> getDrivers() {
+    public List<Driver> getDrivers() {
         return drivers;
     }
 
-    public void setDrivers(ArrayList<Driver> drivers) {
+    public void setDrivers(List<Driver> drivers) {
         this.drivers = drivers;
         for (Driver driver : drivers) {
             driver.setCompany(this);
@@ -83,12 +85,8 @@ public class TaxiCompany{
     }
 
     public void verifyCompanyDrivers() {
-        for (Driver driver : this.drivers) {
-            Verifiable verify = driver;
-            if (!verify.verifyBackground()) {
-               LOGGER.info("Driver {} failed background check",  driver.getName());
-            }
-        }
+        drivers.stream()
+                .filter(d -> !d.verifyBackground())
+                .forEach(d -> LOGGER.info("Driver {} failed background check", d.getName()));
     }
-
 }

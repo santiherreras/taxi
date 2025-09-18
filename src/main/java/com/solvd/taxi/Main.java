@@ -24,7 +24,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         //String Util task
-        readFile(scanner);
+        //readFile(scanner);
 
         TaxiCompany company1 = new TaxiCompany("Bogota", "People", LocalDate.of(2010, 8, 11), "EasyTaxi");
         TaxiCompany company2 = new TaxiCompany("Monaco", "Meals", LocalDate.of(2021, 12, 11), "EasyMeals");
@@ -50,17 +50,8 @@ public class Main {
         Vehicle car9 = new Car("Sportage", "Gray", 2011, 4, 33);
         Vehicle car10 = new Car("BMW", "Green", 2020, 3, 60);
 
-        Set<Vehicle> uniqueVehicles = new HashSet<>();
-        uniqueVehicles.add(car1);
-        uniqueVehicles.add(car2);
-        uniqueVehicles.add(car3);
-        uniqueVehicles.add(car4);
-        uniqueVehicles.add(car5);
-        uniqueVehicles.add(car6);
-        uniqueVehicles.add(car7);
-        uniqueVehicles.add(car8);
-        uniqueVehicles.add(car9);
-        uniqueVehicles.add(car10);
+        Set<Vehicle> uniqueVehicles = Set.of(car1, car2, car3, car4, car5,
+                car6, car7, car8, car9, car10);
 
         try {
             Driver driver1 = new Driver("Carlos", "001", LocalDate.of(1980, 1, 11), 67, 175, true, true, car1, new Location(25, 65), false);
@@ -84,16 +75,21 @@ public class Main {
             LOGGER.error("Error: "+ e.getMessage(),e);
         }
 
-        ArrayList<Driver> allDrivers = new ArrayList<>();
-        allDrivers.addAll(company1.getDrivers());
-        allDrivers.addAll(company2.getDrivers());
-        allDrivers.addAll(company3.getDrivers());
-        allDrivers.addAll(company4.getDrivers());
-        allDrivers.addAll(company5.getDrivers());
+        List<Driver> allDrivers = companiesMap.values().stream()
+                .flatMap(c -> c.getDrivers().stream())
+                .toList();
+
+
+        DriverFilter availableFilter = d -> d.isAvailable();
+        List<Driver> availableDrivers = allDrivers.stream()
+                .filter(availableFilter::test)
+                .toList();
+
 
         LOGGER.info("Welcome to TaxiApp!");
+        LOGGER.info("Available drivers: {}", availableDrivers.size());
         LOGGER.info("Please enter your name: ");
-        String passengerName = scanner.nextLine();
+        String passengerName = scanner.nextLine().trim().toUpperCase();
 
         LOGGER.info("Enter your ID number: ");
         String passengerId = scanner.nextLine();
@@ -159,16 +155,36 @@ public class Main {
         }
 
 
-        LOGGER.info("============================ Ride Summary ============================");
-        LOGGER.info("Passenger: " + ride1.getPassenger().getName());
-        LOGGER.info("Passenger ID: " + ride1.getPassenger().getId());
-        LOGGER.info("Payment method: " + paymentMethod);
-        LOGGER.info("Driver: " + ride1.getDriver().getName() + " from Company: " + ride1.getDriver().getCompany().getName());
-        LOGGER.info("Information: " + ride1.getDriver().getVehicle().toString());
-        LOGGER.info("Estimated waiting time: " + ride1.getWaitingTime() + " minutes");
-        LOGGER.info("Estimated ride distance: " + ride1.getDistance() + " units");
-        LOGGER.info("Estimated ride duration: " + ride1.getDuration() + " minutes");
-        LOGGER.info("Fare: $" + fare);
+        RideSummaryFormatter summaryFormatter = (r, f, df, method) -> """
+        ============================ Ride Summary ============================
+        Passenger: %s
+        Passenger ID: %s
+        Payment method: %s
+        Driver: %s from Company: %s
+        Information: %s
+        Estimated waiting time: %d minutes
+        Estimated ride distance: %.2f units
+        Estimated ride duration: %d minutes
+        Fare: $%.2f
+        Discounted fare: $%.2f
+        ======================================================================
+        """.formatted(
+                r.getPassenger().getName(),
+                r.getPassenger().getId(),
+                method,
+                r.getDriver().getName(),
+                r.getDriver().getCompany().getName(),
+                r.getDriver().getVehicle().toString(),
+                r.getWaitingTime(),
+                r.getDistance(),
+                r.getDuration(),
+                f,
+                df
+        );
+
+        FareModifier discount = fareValue -> fareValue * 0.95;
+        double discountedFare = discount.apply(fare);
+        LOGGER.info(summaryFormatter.format(ride1, fare, discountedFare, paymentMethod));
         LOGGER.info("Press 1 to confirm the ride. 2 to cancel it.");
         int confirm = scanner.nextInt();
 
