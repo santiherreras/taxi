@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class CreditCardPayment extends Payment {
     private static final Logger LOGGER = LogManager.getLogger(CreditCardPayment.class);
+    @SensitiveData
     private String cardNumber;
     private String owner;
 

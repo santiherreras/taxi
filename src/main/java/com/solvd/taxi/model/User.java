@@ -3,7 +3,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class User implements Rateable {
+    @SensitiveData(maskWith = "########")
     protected String id;
+    @SensitiveData
     protected String name;
     protected int phoneNumber;
     protected String email;

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class CryptoPayment extends Payment {
     private static final Logger LOGGER = LogManager.getLogger(CryptoPayment.class);
+    @SensitiveData
     private final String walletAddress;
     private final String cryptoType; // BTC, ETH
 

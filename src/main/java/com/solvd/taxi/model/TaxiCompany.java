@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.apache.commons.lang3.BooleanUtils.forEach;
-
 public class TaxiCompany{
 
     private static final Logger LOGGER = LogManager.getLogger(TaxiCompany.class);

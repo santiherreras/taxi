@@ -86,7 +86,7 @@ public class Main {
                 .toList();
 
 
-        LOGGER.info("Welcome to TaxiApp!");
+        LOGGER.info("Welcome to Taxi!");
         LOGGER.info("Available drivers: {}", availableDrivers.size());
         LOGGER.info("Please enter your name: ");
         String passengerName = scanner.nextLine().trim().toUpperCase();
@@ -157,9 +157,7 @@ public class Main {
 
         RideSummaryFormatter summaryFormatter = (r, f, df, method) -> """
         ============================ Ride Summary ============================
-        Passenger: %s
-        Passenger ID: %s
-        Payment method: %s
+        Passenger (masked): %s
         Driver: %s from Company: %s
         Information: %s
         Estimated waiting time: %d minutes
@@ -169,9 +167,7 @@ public class Main {
         Discounted fare: $%.2f
         ======================================================================
         """.formatted(
-                r.getPassenger().getName(),
-                r.getPassenger().getId(),
-                method,
+                DataMasker.maskSensitive(r.getPassenger()),
                 r.getDriver().getName(),
                 r.getDriver().getCompany().getName(),
                 r.getDriver().getVehicle().toString(),
@@ -242,7 +238,7 @@ public class Main {
 
             Review review = new Review(ride1, rating, comment);
 
-            LOGGER.info("You rated " + review.getRating() + " stars with comment: \"" + review.getComment() + "\"");
+            LOGGER.info("You rated " + review.rating() + " stars with comment: \"" + review.comment() + "\"");
             LOGGER.info("Thank you for your feedback. See you soon!");
             ride1.getDriver().setAvailable(true);
         }
