@@ -1,0 +1,127 @@
+What is LiDAR?
+
+LiDAR is a remote sensing technology that uses laser beams to measure distances and movements accurately in a given environment, in real-time.
+
+LiDAR data can be used to generate everything from detailed topographic maps to precise and dynamic 3D models needed to safely guide an autonomous vehicle through a changing environment. LiDAR technology is also used to assess hazards and natural disasters, such as lava flows, landslides, tsunamis, and floods.
+
+3D Design of Balls Rolling on a Track
+
+The Latest News and Insights on AI
+Discover expert insights and news on AI, cloud, and more in the weekly Think newsletter.
+
+Subscribe Today
+
+How LiDAR Works
+
+LiDAR (from “light detection and ranging”) operates on the same principles as radar (detection and distance measurement, a system used in maritime and aerial navigation) and sonar (navigation and localization, a system typically used in submarines).
+
+All three technologies emit energy waves to detect and locate objects. The difference is that while radar uses microwaves and sonar uses sound waves, LiDAR uses reflected light, which can measure distance faster, with higher accuracy and resolution than radar or sonar.
+
+LiDAR System Components
+
+A typical LiDAR instrument consists of several components:
+
+A laser scanner that emits rapid pulses of near-infrared laser light
+
+A LiDAR sensor used to detect and collect the reflected light pulses
+
+A processor to calculate time and distance, as well as to build the resulting data set, known as a LiDAR point cloud.
+
+For remote sensing to be accurate, time and space measurements must be precise, so a LiDAR system also employs timing electronics, an inertial measurement unit (IMU), and GPS.
+
+LiDAR Measurement
+
+The LiDAR instrument emits laser light pulses into the environment
+
+These pulses travel at the speed of light, bounce off surrounding objects, and return to the LiDAR sensor
+
+The sensor measures the time it took for each pulse to return and calculates the distance it traveled.
+
+Since the speed of light is constant, this "time of flight" can be used to calculate precise distances.
+
+By repeating the process and sending laser pulses across a larger area, time-of-flight measurements can be collected across billions of individual points and processed in real-time into what is known as a point cloud.
+
+LiDAR Data Analysis and Modeling
+
+The data undergoes several stages of processing to transform the LiDAR point cloud into a 3D map.
+
+First, its accuracy is checked and cleaned to remove anomalous noise. Then, surface features such as buildings, rivers, and forest canopies can be identified and classified using algorithms.
+To simplify analysis, algorithms reduce the point cloud sample to remove redundant data and reduce file size. The data is then converted to the LAS (or LASer) industry-standard file format used to exchange 3D x, y, z data.
+
+Finally, once converted to the LAS format, point cloud data can be visualized and modeled on a 3D map of the scanned terrain. These calculations are continuous and constant for a moving LiDAR system, such as those used in autonomous vehicles. According to one source, autonomous cars generate and process one terabyte of data for every hour of operation.
+
+LiDAR Types
+
+LiDAR systems are divided into two types based on their platform: aerial LiDAR and terrestrial LiDAR.
+
+Aerial LiDAR
+
+Aerial LiDAR systems, also called airborne laser scanning systems, use LiDAR scanners mounted on aircraft (typically helicopters or unmanned aerial vehicles) to generate 3D models of the Earth's surface.
+
+Aerial LiDAR mapping has become a valuable tool for creating digital elevation models of Earth's surface, mainly replacing the older and less accurate photogrammetry method. Aerial LiDAR scanning is also widely used in forestry to produce LiDAR maps of the tree canopy and topographic models of forest surfaces.
+
+Types of aerial LiDAR technology include:
+
+Bathymetric LiDAR:
+Bathymetric LiDAR captures GIS data in shallow waters and along coastlines. It emits green laser light with a wavelength that can penetrate water to measure the digital elevation of the seabed, instead of using infrared laser light like typical LiDAR systems.
+
+Space-based LiDAR:
+NASA and other space agencies use space-based LiDAR for spacecraft navigation and digital mapping of celestial bodies. LiDAR is also used to pilot NASA's autonomous vehicles and fly the Ingenuity helicopter on Mars.
+
+Terrestrial LiDAR
+
+Terrestrial LiDAR systems are often used to create maps of terrain and landscapes. This system is used to gather more localized and short-range data, making it ideal for mapping smaller areas with high precision.
+
+Types of terrestrial LiDAR include:
+
+Static LiDAR:
+Some terrestrial LiDAR systems are static, fixed in one location, and used for accurate, repeated LiDAR scans of a single area. Static LiDAR is often employed in archaeological sites, construction projects, and risk assessments. It can monitor the surface of active volcanoes, seismic fault lines, and flooded areas.
+
+Mobile LiDAR:
+Mobile LiDAR is a form of terrestrial LiDAR that gathers LiDAR data from a moving vehicle. Mobile LiDAR systems (MLS) are critical for the automotive industry in the development of driver assistance and autonomous driving technologies. Real-time data collection through light detection and distance measurement enables autonomous vehicles to quickly, accurately, and cost-effectively identify road assets and infrastructure.
+
+LiDAR Use Cases
+
+LiDAR scans have a wide range of applications in real-world industries. They can create detailed models of surface terrain and seabeds and also produce high-resolution, real-time visualizations of moving objects.
+
+Agriculture:
+LiDAR sensors are used to measure agricultural environments and topography, estimate crop biomass, and detect soil properties by mapping variations in depth, slope, moisture, and appearance. LiDAR is also used to pilot autonomous agricultural vehicles.
+
+Aerospace and Defense:
+LiDAR is used for terrain mapping, target tracking, mine detection, and cloud imaging, as well as mission planning with sophisticated visualizations of battlefield fields, even in dense urban environments.
+
+Automotive:
+Advanced Driver Assistance Systems (ADAS) and autonomous vehicles, such as self-driving cars, use 3D LiDAR map data to navigate roads and other environments.
+
+Aviation:
+LiDAR can be used to measure wind speed accurately and is also used at airports to track aircraft and foreign object debris (FOD).
+
+Bathymetry:
+Bathymetric LiDAR uses green laser light to penetrate water and create digital elevation models of shallow reservoirs, rivers, and coastal beds. These can measure erosion, map wildlife habitats, and assess risk in flood zones.
+
+Construction:
+LiDAR can quickly and accurately inspect a construction site, calculate material volumes, and be used for safety inspections and hazard detection.
+
+Energy:
+LiDAR technology is used for wind resource assessment, oil and gas exploration, and vegetation management for maintaining power lines.
+
+Entertainment:
+LiDAR is used to create environment maps in virtual and augmented reality applications.
+
+Forestry:
+In addition to providing detailed topographic maps, LiDAR can be used to measure tree structural features, such as leaf area index and canopy volume, and is a valuable tool in vegetation management. It is also used to monitor and contain forest fires.
+
+Geology and Mining:
+Accessing mines and quarries is difficult, and LiDAR is increasingly used for topographic surveys, mapping, and worker safety. LiDAR scans can also be used for volume measurements in quarries.
+
+Manufacturing:
+LiDAR technology can be used to create 3D models of objects for manufacturing purposes. It can also be used for quality control to detect anomalies and defects.
+
+Mapping Creation:
+LiDAR is used to create digital elevation models and create maps of roads, bridges, and other geographic and infrastructure features.
+
+Vegetation Management:
+LiDAR can be used to scan through the canopy and monitor the density, species, and health of flora to identify high-risk vegetation for utilities and other infrastructure.
+
+Weather Forecasting:
+LiDAR sensors are used to measure temperature, cloudiness, wind speed, velocity, and other atmospheric parameters, providing vital data for weather forecasting models.
