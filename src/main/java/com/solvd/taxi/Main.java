@@ -10,6 +10,7 @@ import com.solvd.taxi.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,6 +26,43 @@ public class Main {
 
         //String Util task
         //readFile(scanner);
+
+        Runnable passengerThread = () -> {
+            TaxiLogger.INSTANCE.log(" Requesting a taxi...");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                LOGGER.info("Thread interrupted", e);
+            }
+
+            TaxiLogger.INSTANCE.log(" Assigned taxi.");
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                LOGGER.info("Thread interrupted", e);
+            }
+
+            TaxiLogger.INSTANCE.log("Ride ended successfully");
+        };
+
+        Thread user1 = new Thread(passengerThread, "User-1");
+        Thread user2 = new Thread(passengerThread, "User-2");
+        Thread user3 = new Thread(passengerThread, "User-3");
+
+        LOGGER.info("------- Starting multi-threaded taxi requests -------");
+        user1.start();
+        user2.start();
+        user3.start();
+
+        try {
+            user1.join();
+            user2.join();
+            user3.join();
+        } catch (InterruptedException e) {
+            LOGGER.error("Error while waiting for threads", e);
+        }
+        LOGGER.info("------- Finished multi-threaded test -------");
+
 
         TaxiCompany company1 = new TaxiCompany("Bogota", "People", LocalDate.of(2010, 8, 11), "EasyTaxi");
         TaxiCompany company2 = new TaxiCompany("Monaco", "Meals", LocalDate.of(2021, 12, 11), "EasyMeals");
@@ -244,6 +282,8 @@ public class Main {
         }
         scanner.close();
     }
+
+
     public static void readFile(Scanner scanner)  {
         LOGGER.info(" Please write the word you want to count in the input article.");
         String word = scanner.nextLine();
@@ -256,5 +296,3 @@ public class Main {
     }
 
 }
-
-
